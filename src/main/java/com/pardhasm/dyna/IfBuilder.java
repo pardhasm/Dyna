@@ -6,10 +6,12 @@ import java.util.List;
 public enum IfBuilder {
     instance;
 
-    public String build(String access, List<String> expressions, List<String> operators, List<String> statements) throws ValidationException {
-        validate(access, expressions, statements);
+    public String build(List<String> expressions, List<String> operators, List<String> statements)
+            throws ValidationException {
+        validate(expressions, statements);
         StringBuilder builder = new StringBuilder();
-        builder.append(" if( ").append(expressions.get(0));
+        builder.append(" if( ")
+               .append(expressions.get(0));
         for (int i = 0; i < expressions.size(); i++) {
             builder.append(" ");
             builder.append(operators.get(i));
@@ -25,10 +27,7 @@ public enum IfBuilder {
         return builder.toString();
     }
 
-    private void validate(String access, List<String> expressions, List<String> operators) throws ValidationException {
-        if (!Constants.accessModifiers.contains(access)) {
-            throw new ValidationException("Invalid access modifier : " + access);
-        }
+    private void validate(List<String> expressions, List<String> operators) throws ValidationException {
 
         if (expressions.isEmpty()) {
             throw new ValidationException("No expressions provided");
