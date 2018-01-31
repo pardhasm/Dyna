@@ -13,15 +13,15 @@ public enum IfBuilder {
         builder.append(" if( ")
                .append(expressions.get(0));
         for (int i = 0; i < expressions.size(); i++) {
-            builder.append(" ");
-            builder.append(operators.get(i));
-            builder.append(" ");
-            builder.append(expressions.get(i + 1));
+            builder.append(" ")
+                   .append(operators.get(i));
+            builder.append(" ")
+                   .append(expressions.get(i + 1));
         }
         builder.append(" ){");
         for (String st : statements) {
-            builder.append(st);
-            builder.append(";");
+            builder.append(st)
+                   .append(";");
         }
         builder.append(" }");
         return builder.toString();
